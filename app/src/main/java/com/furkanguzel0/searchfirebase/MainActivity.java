@@ -229,6 +229,7 @@ public class MainActivity extends AppCompatActivity{
                         AdapterClass adapterClass = new AdapterClass(myList);
                         recyclerView.setAdapter(adapterClass);
 
+                        //deneme commit
                     }
                 }
 
