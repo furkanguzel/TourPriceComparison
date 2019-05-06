@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+        <!--
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:padding="10dp"
+        app:queryHint="Search"
+        android:layout_margin="5dp"/>
+        -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/tab1button"
+            android:text="tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/tab2button"
+            android:text="tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/tab3button"
+            android:text="tab3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/tab1layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tab1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:visibility="gone"
+            android:id="@+id/tab2layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Where"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="SelectDate"
+                android:inputType="date"
+                />
+            <TextView
+                android:id="@+id/tvDate1"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="SelectDate"
+                android:inputType="date"
+                />
+
+
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Price inc"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="40dp"
+
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tab3layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tab3"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>
+

@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "441543229688",
+    "firebase_url": "https://tourcomparison-a8608.firebaseio.com",
+    "project_id": "tourcomparison-a8608",
+    "storage_bucket": "tourcomparison-a8608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441543229688:android:d784ce94356796f8",
+        "android_client_info": {
+          "package_name": "com.furkanguzel0.searchfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvWgpSq4JOxsivC4iLILErNOmfCefy884"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441543229688:android:1aeebdd3f1a9ce82",
+        "android_client_info": {
+          "package_name": "myfirstapp.furkanguzel.com.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvWgpSq4JOxsivC4iLILErNOmfCefy884"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441543229688:android:cdae04a1fe53af05",
+        "android_client_info": {
+          "package_name": "myfirstapp.furkanguzel.com.myfirstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441543229688-jhbbribnqqda0756ku7sdedokse7epr9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "myfirstapp.furkanguzel.com.myfirstapp",
+            "certificate_hash": "ad6ad3b56ad2dec9aec43cc9cb103df92ed49709"
+          }
+        },
+        {
+          "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvWgpSq4JOxsivC4iLILErNOmfCefy884"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441543229688-a6ioum7ljrmbbl8ld3t2l08mgrp0t5vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
