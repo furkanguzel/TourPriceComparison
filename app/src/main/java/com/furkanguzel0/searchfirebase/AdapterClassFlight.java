@@ -13,20 +13,20 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder>  {
-    ArrayList<Hotels> list;
-    private Context context;
-    private String str;
-    private String str1;
-    private String f;
-    private String s;
+public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.MyViewHolder>  {
+    ArrayList<Flights> list1;
+    public Context context;
+    public String str;
+    public String str1;
+    public String f;
+    public String s;
 
-    private  Float totalcost;
+    public  Float totalcost;
 
 
-    public AdapterClass(ArrayList<Hotels> list)
+    public AdapterClassFlight(ArrayList<Flights> list1)
     {
-        this.list = list;
+        this.list1 = list1;
     }
     @NonNull
     @Override
@@ -37,16 +37,16 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
-        final Hotels item = list.get(position);
+        final Flights item = list1.get(position);
 
-        myViewHolder.id1.setText(list.get(position).getHotel_name());
-        myViewHolder.desc1.setText(list.get(position).getPrice());
+        myViewHolder.id.setText(list1.get(position).getFlight_company());
+        myViewHolder.desc.setText(list1.get(position).getPrice());
 
         Picasso.get()
-                .load(list.get(position).getHotel_img())
-                .resize(250, 250)
+                .load(list1.get(position).getFlight_img())
+                .resize(500, 400)
                 // .centerCrop()
-                .into(myViewHolder.imgUrl1);
+                .into(myViewHolder.imgUrl);
 
 
     }
@@ -57,22 +57,22 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @Override
     public int getItemCount()
     {
-        return list.size();
+        return list1.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView id1,desc1;
-        ImageView imgUrl1;
+        TextView id,desc;
+        ImageView imgUrl;
         //Button btn;
         //Button goToBasket;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
-            id1 = itemView.findViewById(R.id.dealId);
-            desc1 = itemView.findViewById(R.id.description);
-            imgUrl1 = itemView.findViewById(R.id.imageView);
-           // btn = itemView.findViewById(R.id.basket);
+            id = itemView.findViewById(R.id.dealId1);
+            desc = itemView.findViewById(R.id.description1);
+            imgUrl = itemView.findViewById(R.id.imageView1);
+            // btn = itemView.findViewById(R.id.basket);
             //goToBasket = itemView.findViewById(R.id.sepet);
 
 

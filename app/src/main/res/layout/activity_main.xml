@@ -24,19 +24,21 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/tab1button"
-            android:text="tab1"
+            android:text="HOTEL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
+            android:alpha="0.4"
             android:id="@+id/tab2button"
-            android:text="tab2"
+            android:text="FLIGHT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
+            android:alpha="0.4"
             android:id="@+id/tab3button"
-            android:text="tab3"
+            android:text="TOUR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
@@ -45,23 +47,11 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!--Hotel -->
 
         <LinearLayout
-            android:id="@+id/tab1layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="tab1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-
             android:visibility="gone"
-            android:id="@+id/tab2layout"
+            android:id="@+id/tab1layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -88,8 +78,6 @@
                 android:inputType="date"
                 />
 
-
-
             <Button
                 android:id="@+id/button1"
                 android:layout_width="100dp"
@@ -97,9 +85,66 @@
                 android:text="Price inc"
                 />
 
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="40dp"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+        <!--FLIGHT -->
+
+        <LinearLayout
+
+            android:id="@+id/tab2layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Where from"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/edt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Where to"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/tvDate2"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="SelectDate"
+                android:inputType="date"
+                />
+            <TextView
+                android:id="@+id/tvDate3"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="SelectDate"
+                android:inputType="date"
+                />
+
+
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Price inc"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
@@ -112,6 +157,7 @@
 
 
         </LinearLayout>
+        <!--TOUR -->
 
         <LinearLayout
             android:visibility="gone"
