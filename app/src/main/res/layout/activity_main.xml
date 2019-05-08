@@ -89,8 +89,6 @@
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="40dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
@@ -100,7 +98,7 @@
         <!--FLIGHT -->
 
         <LinearLayout
-
+            android:visibility="gone"
             android:id="@+id/tab2layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -125,13 +123,13 @@
                 android:hint="SelectDate"
                 android:inputType="date"
                 />
+
             <TextView
                 android:id="@+id/tvDate3"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:hint="SelectDate"
-                android:inputType="date"
-                />
+                android:inputType="date" />
 
 
 
@@ -146,11 +144,10 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="0dp"
-                android:layout_marginBottom="40dp"
 
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
@@ -165,10 +162,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
+
+            <EditText
+                android:id="@+id/edt3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="tab3"/>
+                android:hint="Where from"
+                android:inputType="text" />
+
+
+            <TextView
+                android:id="@+id/tvDate4"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="SelectDate"
+                android:inputType="date"
+                />
+
+            <TextView
+                android:id="@+id/tvDate5"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="SelectDate"
+                android:inputType="date" />
+
+
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Price inc"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
         </LinearLayout>
 
     </FrameLayout>

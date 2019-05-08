@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     RecyclerView recyclerViewFlight;
+    RecyclerView recyclerViewTour;
 
     Button btn;
     EditText editText;
@@ -74,6 +75,26 @@ public class MainActivity extends AppCompatActivity{
     public DatePickerDialog.OnDateSetListener from_date1;
     public DatePickerDialog.OnDateSetListener to_date1;
 
+    //TOUR
+    DatabaseReference ref2;
+    ArrayList<Tours> list2;
+
+    RecyclerView recyclerView2;
+    Button btnTour;
+    EditText editText3,editText4;
+    TextView tw3;
+    private String TAG4 = "MainActivity";
+    private String TAG5 = "MainActivity";
+
+    private TextView mDisplayDate4;
+    private TextView mDisplayDate5;
+
+    private TextView Text4;
+    private TextView Text5;
+
+    public DatePickerDialog.OnDateSetListener from_date2;
+    public DatePickerDialog.OnDateSetListener to_date2;
+
 
 
 
@@ -87,6 +108,8 @@ public class MainActivity extends AppCompatActivity{
 
         ref = FirebaseDatabase.getInstance().getReference().child("hotels");
         ref1 = FirebaseDatabase.getInstance().getReference().child("flights");
+        ref2 = FirebaseDatabase.getInstance().getReference().child("tours");
+
 
         //hotel
         btn = findViewById(R.id.button1);
@@ -106,6 +129,15 @@ public class MainActivity extends AppCompatActivity{
 
         Text2 = findViewById(R.id.tvDate2);
         Text3 = findViewById(R.id.tvDate3);
+        //tour
+        btnTour = findViewById(R.id.button3);
+        recyclerViewTour = findViewById(R.id.recyclerview2);
+        editText3 = findViewById(R.id.edt3);
+        mDisplayDate4 = findViewById(R.id.tvDate4);
+        mDisplayDate5 = findViewById(R.id.tvDate5);
+
+        Text4 = findViewById(R.id.tvDate4);
+        Text5 = findViewById(R.id.tvDate5);
 
         tab1 = findViewById(R.id.tab1button);
         tab2 = findViewById(R.id.tab2button);
@@ -148,9 +180,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
         tab1.performClick();
-
 
         //hotel takvim
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -300,6 +330,77 @@ public class MainActivity extends AppCompatActivity{
         };
 
 
+        //flight takvim
+        mDisplayDate4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_Material_Dialog_MinWidth,
+                        from_date2, year, month, day);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        from_date2 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                month = month + 1;
+
+                String mt, dy;   //local variable
+                if (month < 10)
+                    mt = "0" + month; //if month less than 10 then ad 0 before month
+                else mt = String.valueOf(month);
+
+                if (dayOfMonth < 10)
+                    dy = "0" + dayOfMonth;
+                else dy = String.valueOf(dayOfMonth);
+                String date1 = year + "-" + mt + "-" + dy;
+                mDisplayDate4.setText(date1);
+
+            }
+        };
+        mDisplayDate5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_DeviceDefault_Dialog_MinWidth,
+                        to_date2, year, month, day);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+
+            }
+        });
+
+        to_date2 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+
+                String mt, dy;   //local variable
+                if (month < 10)
+                    mt = "0" + month; //if month less than 10 then ad 0 before month
+                else mt = String.valueOf(month);
+
+                if (dayOfMonth < 10)
+                    dy = "0" + dayOfMonth;
+                else dy = String.valueOf(dayOfMonth);
+                String date2 = year + "-" + mt + "-" + dy;
+                mDisplayDate5.setText(date2);
+            }
+        };
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -319,14 +420,76 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+        btnTour.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //button bilgisi gerekebilir
+                method2();
+
+            }
+        });
     }
+
+    /*
+      btnTour = findViewById(R.id.button3);
+        recyclerViewTour = findViewById(R.id.recyclerview2);
+        editText3 = findViewById(R.id.edt3);
+        mDisplayDate4 = findViewById(R.id.tvDate4);
+        mDisplayDate5 = findViewById(R.id.tvDate5);
+
+        Text4 = findViewById(R.id.tvDate2);
+        Text5 = findViewById(R.id.tvDate3);
+    */
+
+    public void method2() {//bu tour için
+
+        if (ref2 != null) {
+
+            Query query2 = ref2.orderByChild("price");
+            query2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String s1 = editText3.getText().toString();
+                    String s2 = Text4.getText().toString();
+                    String s3 = Text5.getText().toString();
+                    list2 = new ArrayList<>();
+
+                    if (dataSnapshot.exists()) {
+                        Tours local = new Tours();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            list2.add(ds.getValue(Tours.class));
+                        }
+                        ArrayList<Tours> myList2 = new ArrayList<>();
+                        for (Tours object : list2) {
+                            if (object.getLocation().toLowerCase().contains(s1.toLowerCase())) {
+                                String value = object.getCheckInDate();
+                                String value1 = object.getCheckOutDate();
+                                if (value.compareTo(s2) > 0 || value.compareTo(s2) == 0) //value >= date
+                                    if (value1.compareTo(s3) < 0 || value1.compareTo(s3) == 0)// value1 <= date1
+                                        myList2.add(object);
+                            }
+                        }
+
+                        AdapterClassTour adapterClass = new AdapterClassTour(myList2);
+                        recyclerViewTour.setAdapter(adapterClass);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
 
     public void method1 () {//bu uçak için
 
-
         if (ref1 != null) {
-
 
             Query query1 = ref1.orderByChild("price");
             query1.addValueEventListener(new ValueEventListener() {
@@ -370,8 +533,6 @@ public class MainActivity extends AppCompatActivity{
                 }
             });
         }
-
-
     }
     public void method () {//bu hotel için
 

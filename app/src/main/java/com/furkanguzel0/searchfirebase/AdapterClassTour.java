@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.MyViewHolder>  {
-    ArrayList<Flights> list1;
+public class AdapterClassTour extends RecyclerView.Adapter<AdapterClassTour.MyViewHolder>  {
+    ArrayList<Tours> list1;
     public Context context;
     public String str;
     public String str1;
@@ -24,7 +24,7 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
     public  Float totalcost;
 
 
-    public AdapterClassFlight(ArrayList<Flights> list1)
+    public AdapterClassTour(ArrayList<Tours> list1)
     {
         this.list1 = list1;
     }
@@ -37,22 +37,18 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
-        final Flights item = list1.get(position);
+        final Tours item = list1.get(position);
 
-        myViewHolder.id.setText(list1.get(position).getFlight_company());
+        myViewHolder.id.setText(list1.get(position).getTour_name());
         myViewHolder.desc.setText(list1.get(position).getPrice());
 
         Picasso.get()
-                .load(list1.get(position).getFlight_img())
+                .load(list1.get(position).getTour_img())
                 .resize(500, 400)
                 // .centerCrop()
                 .into(myViewHolder.imgUrl);
 
-
     }
-
-
-
 
     @Override
     public int getItemCount()
@@ -79,3 +75,4 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
         }
     }
 }
+
