@@ -1,6 +1,7 @@
 package com.furkanguzel0.searchfirebase;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -29,18 +30,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity{
+
+    public static float totalcost ;
+
+    //ArrayList<String> tot = new ArrayList<>();
+
     //Hotel
     DatabaseReference ref;
     ArrayList<Hotels> list;
+    ArrayList<Flights> myList2 = new ArrayList<>();
+    ArrayList<Hotels> myList3 = new ArrayList<>();
+    ArrayList<Tours> myList4 = new ArrayList<>();
+
 
     RecyclerView recyclerView;
     RecyclerView recyclerViewFlight;
     RecyclerView recyclerViewTour;
 
     Button btn;
+    Button btnHotelReverse;
+
     EditText editText;
     TextView tw1;
     private String TAG = "MainActivity";
@@ -51,7 +63,10 @@ public class MainActivity extends AppCompatActivity{
 
     private TextView Text;
     private TextView Text1;
-    Button tab1,tab2,tab3;
+    Button tab1,tab2,tab3,tab4;
+    public String date1;
+    public String date2;
+
 
     public DatePickerDialog.OnDateSetListener from_date;
     public DatePickerDialog.OnDateSetListener to_date;
@@ -61,6 +76,8 @@ public class MainActivity extends AppCompatActivity{
 
     RecyclerView recyclerView1;
     Button btnFlight;
+    Button btnFlightReverse;
+
     EditText editText1,editText2;
     TextView tw2;
     private String TAG2 = "MainActivity";
@@ -81,6 +98,8 @@ public class MainActivity extends AppCompatActivity{
 
     RecyclerView recyclerView2;
     Button btnTour;
+    Button btnTourReverse;
+
     EditText editText3,editText4;
     TextView tw3;
     private String TAG4 = "MainActivity";
@@ -91,6 +110,9 @@ public class MainActivity extends AppCompatActivity{
 
     private TextView Text4;
     private TextView Text5;
+
+    private TextView TOTAL;
+    Button click;
 
     public DatePickerDialog.OnDateSetListener from_date2;
     public DatePickerDialog.OnDateSetListener to_date2;
@@ -104,6 +126,7 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
 
+
         FirebaseApp.initializeApp(MainActivity.this);
 
         ref = FirebaseDatabase.getInstance().getReference().child("hotels");
@@ -111,8 +134,12 @@ public class MainActivity extends AppCompatActivity{
         ref2 = FirebaseDatabase.getInstance().getReference().child("tours");
 
 
+
+
         //hotel
         btn = findViewById(R.id.button1);
+        btnHotelReverse = findViewById(R.id.buttonDec);
+
         recyclerView = findViewById(R.id.recyclerview);
         editText = findViewById(R.id.edt);
         mDisplayDate = findViewById(R.id.tvDate);
@@ -121,6 +148,7 @@ public class MainActivity extends AppCompatActivity{
         Text1 = findViewById(R.id.tvDate1);
         //flight
         btnFlight = findViewById(R.id.button2);
+        btnFlightReverse = findViewById(R.id.buttonDec1);;
         recyclerViewFlight = findViewById(R.id.recyclerview1);
         editText1 = findViewById(R.id.edt1);
         editText2 = findViewById(R.id.edt2);
@@ -131,6 +159,8 @@ public class MainActivity extends AppCompatActivity{
         Text3 = findViewById(R.id.tvDate3);
         //tour
         btnTour = findViewById(R.id.button3);
+        btnTourReverse = findViewById(R.id.buttonDec2);
+
         recyclerViewTour = findViewById(R.id.recyclerview2);
         editText3 = findViewById(R.id.edt3);
         mDisplayDate4 = findViewById(R.id.tvDate4);
@@ -139,9 +169,16 @@ public class MainActivity extends AppCompatActivity{
         Text4 = findViewById(R.id.tvDate4);
         Text5 = findViewById(R.id.tvDate5);
 
+        click = findViewById(R.id.ClickTotal);
+
+        TOTAL = findViewById(R.id.TotalBasket);
+
+
         tab1 = findViewById(R.id.tab1button);
         tab2 = findViewById(R.id.tab2button);
         tab3 = findViewById(R.id.tab3button);
+        tab4 = findViewById(R.id.tab4button);
+
 
         tab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,10 +186,14 @@ public class MainActivity extends AppCompatActivity{
                 findViewById(R.id.tab1layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.tab2layout).setVisibility(View.GONE);
                 findViewById(R.id.tab3layout).setVisibility(View.GONE);
+                findViewById(R.id.tab4layout).setVisibility(View.GONE);
+
 
                 tab1.setAlpha(1F);
                 tab2.setAlpha(0.4F);
                 tab3.setAlpha(0.4F);
+                tab4.setAlpha(0.4F);
+
             }
         });
         tab2.setOnClickListener(new View.OnClickListener() {
@@ -161,10 +202,14 @@ public class MainActivity extends AppCompatActivity{
                 findViewById(R.id.tab1layout).setVisibility(View.GONE);
                 findViewById(R.id.tab2layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.tab3layout).setVisibility(View.GONE);
+                findViewById(R.id.tab4layout).setVisibility(View.GONE);
+
 
                 tab1.setAlpha(0.4F);
                 tab2.setAlpha(1F);
                 tab3.setAlpha(0.4F);
+                tab4.setAlpha(0.4F);
+
             }
         });
         tab3.setOnClickListener(new View.OnClickListener() {
@@ -173,10 +218,30 @@ public class MainActivity extends AppCompatActivity{
                 findViewById(R.id.tab1layout).setVisibility(View.GONE);
                 findViewById(R.id.tab2layout).setVisibility(View.GONE);
                 findViewById(R.id.tab3layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.tab4layout).setVisibility(View.GONE);
+
 
                 tab1.setAlpha(0.4F);
                 tab2.setAlpha(0.4F);
                 tab3.setAlpha(1F);
+                tab4.setAlpha(0.4F);
+
+            }
+        });
+        tab4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.tab1layout).setVisibility(View.GONE);
+                findViewById(R.id.tab2layout).setVisibility(View.GONE);
+                findViewById(R.id.tab3layout).setVisibility(View.GONE);
+                findViewById(R.id.tab4layout).setVisibility(View.VISIBLE);
+
+
+                tab1.setAlpha(0.4F);
+                tab2.setAlpha(0.4F);
+                tab3.setAlpha(0.4F);
+                tab4.setAlpha(1F);
+
             }
         });
 
@@ -212,7 +277,7 @@ public class MainActivity extends AppCompatActivity{
                 if (dayOfMonth < 10)
                     dy = "0" + dayOfMonth;
                 else dy = String.valueOf(dayOfMonth);
-                String date1 = year + "-" + mt + "-" + dy;
+                 date1 = year + "-" + mt + "-" + dy;
                 mDisplayDate.setText(date1);
 
             }
@@ -249,7 +314,7 @@ public class MainActivity extends AppCompatActivity{
                 if (dayOfMonth < 10)
                     dy = "0" + dayOfMonth;
                 else dy = String.valueOf(dayOfMonth);
-                String date2 = year + "-" + mt + "-" + dy;
+                date2 = year + "-" + mt + "-" + dy;
                 mDisplayDate1.setText(date2);
 
 
@@ -399,8 +464,12 @@ public class MainActivity extends AppCompatActivity{
                 else dy = String.valueOf(dayOfMonth);
                 String date2 = year + "-" + mt + "-" + dy;
                 mDisplayDate5.setText(date2);
+
+
+
             }
         };
+
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -429,7 +498,51 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+        btnFlightReverse.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //button bilgisi gerekebilir
+                methodFlightReverse();
+
+            }
+        });
+        btnHotelReverse.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //button bilgisi gerekebilir
+                methodHotelReverse();
+            }
+        });
+        btnTourReverse.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //button bilgisi gerekebilir
+                methodTourReverse();
+            }
+        });
+        click.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //button bilgisi gerekebilir
+                m();
+
+            }
+        });
+
+        //for ( int j=0; j<tot.size(); j++ ){
+          //  tot.add(totalcost);
+
+        //}
     }
+
+    public void m() {
+        TOTAL.setText(String.valueOf(MainActivity.totalcost));
+    }
+
 
     /*
       btnTour = findViewById(R.id.button3);
@@ -470,6 +583,7 @@ public class MainActivity extends AppCompatActivity{
                                         myList2.add(object);
                             }
                         }
+                        myList4 = myList2;
 
                         AdapterClassTour adapterClass = new AdapterClassTour(myList2);
                         recyclerViewTour.setAdapter(adapterClass);
@@ -484,14 +598,19 @@ public class MainActivity extends AppCompatActivity{
             });
         }
     }
-
+    public void methodTourReverse(){
+        Collections.reverse(myList4);
+        AdapterClassTour adapterClass4 = new AdapterClassTour(myList4);
+        recyclerViewTour.removeAllViewsInLayout();
+        recyclerViewTour.setAdapter(adapterClass4);
+    }
 
 
     public void method1 () {//bu uçak için
 
         if (ref1 != null) {
 
-            Query query1 = ref1.orderByChild("price");
+            Query query1 = ref1;
             query1.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -518,14 +637,16 @@ public class MainActivity extends AppCompatActivity{
                                         myList1.add(object);
                             }
                         }
-
+                        myList2 = myList1;
                         AdapterClassFlight adapterClass1 = new AdapterClassFlight(myList1);
                         recyclerViewFlight.removeAllViewsInLayout();
                         recyclerViewFlight.setAdapter(adapterClass1);
-
                         //deneme commit asas
+
                     }
+
                 }
+
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -534,6 +655,14 @@ public class MainActivity extends AppCompatActivity{
             });
         }
     }
+
+    public void methodFlightReverse(){
+        Collections.reverse(myList2);
+        AdapterClassFlight adapterClass1 = new AdapterClassFlight(myList2);
+        recyclerViewFlight.removeAllViewsInLayout();
+        recyclerViewFlight.setAdapter(adapterClass1);
+    }
+
     public void method () {//bu hotel için
 
 
@@ -555,7 +684,7 @@ public class MainActivity extends AppCompatActivity{
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             list.add(ds.getValue(Hotels.class));
                         }
-                        ArrayList<Hotels> myList = new ArrayList<>();
+                        ArrayList<Hotels> myList2 = new ArrayList<>();
                         for (Hotels object : list) {
                             if (object.getHotel_location().toLowerCase().contains(s1.toLowerCase())) {
                                 String value = object.getCheckInDate();
@@ -563,11 +692,12 @@ public class MainActivity extends AppCompatActivity{
 
                                 if (value.compareTo(s2) > 0 || value.compareTo(s2) == 0) //value >= date
                                     if (value1.compareTo(s3) < 0 || value1.compareTo(s3) == 0)// value1 <= date1
-                                        myList.add(object);
+                                        myList2.add(object);
                             }
                         }
+                        myList3 = myList2;
 
-                        AdapterClass adapterClass = new AdapterClass(myList);
+                        AdapterClass adapterClass = new AdapterClass(myList2);
                         recyclerView.setAdapter(adapterClass);
 
                     }
@@ -580,5 +710,12 @@ public class MainActivity extends AppCompatActivity{
             });
         }
     }
+    public void methodHotelReverse(){
+        Collections.reverse(myList3);
+        AdapterClass adapterClass2 = new AdapterClass(myList3);
+        recyclerView.removeAllViewsInLayout();
+        recyclerView.setAdapter(adapterClass2);
+    }
+
 }
 

@@ -6,22 +6,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.BreakIterator;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
-public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.MyViewHolder>  {
+import static com.furkanguzel0.searchfirebase.MainActivity.totalcost;
+
+public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.MyViewHolder> {
     ArrayList<Flights> list1;
     public Context context;
-    public String str;
-    public String str1;
-    public String f;
-    public String s;
 
-    public  Float totalcost;
+    public String str1;
+    public String str2;
+    public String str3;
+
+    private MainActivity totalValue = new MainActivity();
+    private String FlightName;
+    private String FlightDescription;
+    private String FlightImg;
 
 
     public AdapterClassFlight(ArrayList<Flights> list1)
@@ -41,16 +49,33 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
 
         myViewHolder.id.setText(list1.get(position).getFlight_company());
         myViewHolder.desc.setText(list1.get(position).getPrice());
+        myViewHolder.id1.setText(list1.get(position).getDeparture_airport());
+        myViewHolder.id2.setText(list1.get(position).getArrival_airport());
+        myViewHolder.id3.setText(list1.get(position).getDeparture_time());
+        myViewHolder.id4.setText(list1.get(position).getArrival_time());
 
         Picasso.get()
                 .load(list1.get(position).getFlight_img())
                 .resize(500, 400)
                 // .centerCrop()
                 .into(myViewHolder.imgUrl);
+        myViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FlightDescription = list1.get(position).getPrice();
+                str1 = FlightDescription.substring(0,FlightDescription.length() - 3);
+                str2 = str1.replace(".","");
+                str3 = str2.replace(",",".");
+                MainActivity.totalcost +=  Float.parseFloat(str3) ;
 
+
+
+            }
+
+
+        });
 
     }
-
 
 
 
@@ -61,21 +86,25 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView id,desc;
+        TextView id,id1,id2,id3,id4,desc;
+
         ImageView imgUrl;
-        //Button btn;
+        Button btn;
         //Button goToBasket;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
             id = itemView.findViewById(R.id.dealId);
+            id1 = itemView.findViewById(R.id.dealId1);
+            id2 = itemView.findViewById(R.id.dealId2);
+            id3 = itemView.findViewById(R.id.dealId3);
+            id4 = itemView.findViewById(R.id.dealId4);
             desc = itemView.findViewById(R.id.description);
             imgUrl = itemView.findViewById(R.id.imageView);
-            // btn = itemView.findViewById(R.id.basket);
+            btn = itemView.findViewById(R.id.basket);
+
             //goToBasket = itemView.findViewById(R.id.sepet);
-
-
         }
     }
 }

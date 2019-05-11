@@ -42,6 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+        <Button
+            android:alpha="0.4"
+            android:id="@+id/tab4button"
+            android:text="BASKET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <FrameLayout
@@ -77,13 +84,27 @@
                 android:hint="SelectDate"
                 android:inputType="date"
                 />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <Button
                 android:id="@+id/button1"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Price inc"
-                />
+                android:layout_weight="1"/>
+
+
+            <Button
+                android:id="@+id/buttonDec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price dec"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
@@ -131,14 +152,27 @@
                 android:hint="SelectDate"
                 android:inputType="date" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Price inc"
+                />
 
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="100dp"
+                android:id="@+id/buttonDec1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price inc"
-                />
+                android:text="Price dec"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
 
             <android.support.v7.widget.RecyclerView
@@ -188,12 +222,30 @@
 
 
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="100dp"
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price inc"
-                />
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price inc"
+                    android:layout_weight="1"
+
+                    />
+
+                <Button
+                    android:id="@+id/buttonDec2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price dec"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
 
 
             <android.support.v7.widget.RecyclerView
@@ -205,6 +257,28 @@
                 android:layout_marginEnd="0dp"
 
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        </LinearLayout>
+        <!--BASKET -->
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tab4layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/ClickTotal"
+                android:text="show total price for TL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/TotalBasket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="50dp"
+                />
+
+
         </LinearLayout>
 
     </FrameLayout>

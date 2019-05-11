@@ -1,11 +1,13 @@
 package com.furkanguzel0.searchfirebase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +18,12 @@ import java.util.ArrayList;
 public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder>  {
     ArrayList<Hotels> list;
     private Context context;
-    private String str;
-    private String str1;
-    private String f;
-    private String s;
 
-    private  Float totalcost;
+    private String HotelName;
+    private String HotelDescription;
+    private String hotelImg;
+
+    private String str1,str2,str3;
 
 
     public AdapterClass(ArrayList<Hotels> list)
@@ -44,16 +46,20 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
         Picasso.get()
                 .load(list.get(position).getHotel_img())
-                .resize(250, 250)
+                .resize(500, 400)
                 // .centerCrop()
                 .into(myViewHolder.imgUrl1);
-
-
+        myViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HotelDescription = list.get(position).getPrice();
+                str1 = HotelDescription.substring(0,HotelDescription.length() - 3);
+                str2 = str1.replace(".","");
+                str3 = str2.replace(",",".");
+                MainActivity.totalcost +=  Float.parseFloat(str3) * 7;
+            }
+        });
     }
-
-
-
-
     @Override
     public int getItemCount()
     {
@@ -63,7 +69,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView id1,desc1;
         ImageView imgUrl1;
-        //Button btn;
+        Button btn;
         //Button goToBasket;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -72,7 +78,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
             id1 = itemView.findViewById(R.id.dealId);
             desc1 = itemView.findViewById(R.id.description);
             imgUrl1 = itemView.findViewById(R.id.imageView);
-           // btn = itemView.findViewById(R.id.basket);
+            btn = itemView.findViewById(R.id.basket);
             //goToBasket = itemView.findViewById(R.id.sepet);
 
 
