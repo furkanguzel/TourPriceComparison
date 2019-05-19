@@ -8,11 +8,12 @@ public class Hotels {
     private String hotel_location;
     private String hotel_name;
     private String price;
+    private String link_adress;
 
     public Hotels() {
     }
 
-    public Hotels(String checkOutDate, String checkInDate, String hotel_id, String hotel_img, String hotel_location, String hotel_name, String price) {
+    public Hotels(String checkOutDate, String checkInDate, String hotel_id, String hotel_img, String hotel_location, String hotel_name, String price, String link_adress) {
         CheckOutDate = checkOutDate;
         this.checkInDate = checkInDate;
         this.hotel_id = hotel_id;
@@ -20,6 +21,7 @@ public class Hotels {
         this.hotel_location = hotel_location;
         this.hotel_name = hotel_name;
         this.price = price;
+        this.link_adress = link_adress;
     }
 
     public String getCheckOutDate() {
@@ -76,5 +78,13 @@ public class Hotels {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getLink_adress() {
+        return link_adress;
+    }
+
+    public void setLink_adress(String link_adress) {
+        this.link_adress = link_adress;
     }
 }

@@ -13,11 +13,13 @@ public class Flights {
         private String flight_id;
         private String flight_img;
         private String price;
+        private String link_adress;
+
 
     public Flights() {
     }
 
-    public Flights(String checkOutDate, String arrival_airport, String arrival_city, String arrival_time, String checkInDate, String departure_airport, String departure_city, String departure_time, String flight_company, String flight_id, String flight_img, String price) {
+    public Flights(String checkOutDate, String arrival_airport, String arrival_city, String arrival_time, String checkInDate, String departure_airport, String departure_city, String departure_time, String flight_company, String flight_id, String flight_img, String price, String link_adress) {
         CheckOutDate = checkOutDate;
         this.arrival_airport = arrival_airport;
         this.arrival_city = arrival_city;
@@ -30,6 +32,7 @@ public class Flights {
         this.flight_id = flight_id;
         this.flight_img = flight_img;
         this.price = price;
+        this.link_adress = link_adress;
     }
 
     public String getCheckOutDate() {
@@ -126,5 +129,13 @@ public class Flights {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getLink_adress() {
+        return link_adress;
+    }
+
+    public void setLink_adress(String link_adress) {
+        this.link_adress = link_adress;
     }
 }

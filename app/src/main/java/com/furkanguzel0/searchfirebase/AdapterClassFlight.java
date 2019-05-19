@@ -1,6 +1,8 @@
 package com.furkanguzel0.searchfirebase;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -68,11 +70,17 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
                 str3 = str2.replace(",",".");
                 MainActivity.totalcost +=  Float.parseFloat(str3) ;
 
-
-
             }
 
 
+        });
+        myViewHolder.linkbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri linkimiz1 = Uri.parse(list1.get(position).getLink_adress()); //butona vermek istediğimiz linki buraya yazıyoruz.
+                Intent intentimiz1 = new Intent(Intent.ACTION_VIEW,linkimiz1);
+                context.startActivity(intentimiz1);
+            }
         });
 
     }
@@ -90,6 +98,8 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
 
         ImageView imgUrl;
         Button btn;
+        Button linkbutton;
+
         //Button goToBasket;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -103,6 +113,8 @@ public class AdapterClassFlight extends RecyclerView.Adapter<AdapterClassFlight.
             desc = itemView.findViewById(R.id.description);
             imgUrl = itemView.findViewById(R.id.imageView);
             btn = itemView.findViewById(R.id.basket);
+            linkbutton = itemView.findViewById(R.id.goToWebsite);
+
 
             //goToBasket = itemView.findViewById(R.id.sepet);
         }

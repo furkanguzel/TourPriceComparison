@@ -8,11 +8,12 @@ public class Tours {
     private String tour_id;
     private String tour_img;
     private String tour_name;
+    private String link_adress;
 
     public Tours() {
     }
 
-    public Tours(String checkOutDate, String checkInDate, String location, String price, String tour_id, String tour_img, String tour_name) {
+    public Tours(String checkOutDate, String checkInDate, String location, String price, String tour_id, String tour_img, String tour_name, String link_adress) {
         CheckOutDate = checkOutDate;
         this.checkInDate = checkInDate;
         this.location = location;
@@ -20,6 +21,7 @@ public class Tours {
         this.tour_id = tour_id;
         this.tour_img = tour_img;
         this.tour_name = tour_name;
+        this.link_adress = link_adress;
     }
 
     public String getCheckOutDate() {
@@ -76,5 +78,13 @@ public class Tours {
 
     public void setTour_name(String tour_name) {
         this.tour_name = tour_name;
+    }
+
+    public String getLink_adress() {
+        return link_adress;
+    }
+
+    public void setLink_adress(String link_adress) {
+        this.link_adress = link_adress;
     }
 }

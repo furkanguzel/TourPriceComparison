@@ -92,7 +92,7 @@
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price inc"
+                android:text="Price increasing"
                 android:layout_weight="1"/>
 
 
@@ -100,7 +100,7 @@
                 android:id="@+id/buttonDec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price dec"
+                android:text="Price decreasing"
                 android:layout_weight="1"/>
 
 
@@ -161,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Price inc"
+                android:text="Price increasing"
                 />
 
 
@@ -169,7 +169,7 @@
                 android:id="@+id/buttonDec1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price dec"
+                android:text="Price decreasing"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -232,7 +232,7 @@
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Price inc"
+                    android:text="Price increasing"
                     android:layout_weight="1"
 
                     />
@@ -241,7 +241,7 @@
                     android:id="@+id/buttonDec2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Price dec"
+                    android:text="Price decreasing"
                     android:layout_weight="1"/>
 
 
@@ -268,7 +268,7 @@
             android:orientation="vertical">
             <Button
                 android:id="@+id/ClickTotal"
-                android:text="show total price for TL"
+                android:text="show total price in TL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity{
 
     public static float totalcost ;
+
 
     //ArrayList<String> tot = new ArrayList<>();
 
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity{
         ref = FirebaseDatabase.getInstance().getReference().child("hotels");
         ref1 = FirebaseDatabase.getInstance().getReference().child("flights");
         ref2 = FirebaseDatabase.getInstance().getReference().child("tours");
-
 
 
 
@@ -394,7 +395,6 @@ public class MainActivity extends AppCompatActivity{
             }
         };
 
-
         //flight takvim
         mDisplayDate4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -532,6 +532,7 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+
 
         //for ( int j=0; j<tot.size(); j++ ){
           //  tot.add(totalcost);
